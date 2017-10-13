@@ -1,4 +1,4 @@
-package com.frick.maximilian.capstone_project;
+package com.frick.maximilian.capstoneproject;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
