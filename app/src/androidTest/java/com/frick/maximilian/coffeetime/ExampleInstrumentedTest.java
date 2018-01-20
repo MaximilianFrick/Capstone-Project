@@ -1,4 +1,4 @@
-package com.frick.maximilian.capstoneproject;
+package com.frick.maximilian.coffeetime;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

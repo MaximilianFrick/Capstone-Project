@@ -1,4 +1,4 @@
-package com.frick.maximilian.capstoneproject;
+package com.frick.maximilian.coffeetime;
 
 import org.junit.Test;
 
