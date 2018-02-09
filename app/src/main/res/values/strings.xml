@@ -2,4 +2,7 @@
    <string name="app_name">Coffeetime</string>
    <string name="logout">Logout</string>
    <string name="no_groups_hint">Create your first group of coffeenerdz</string>
+   <string name="add_group_dialog_msg">Choose a name for your new group:</string>
+   <string name="ok">OK</string>
+   <string name="abort">Abort</string>
 </resources>
