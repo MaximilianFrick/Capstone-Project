@@ -1,13 +1,13 @@
 package com.frick.maximilian.coffeetime.framework.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Group {
    private String id;
+   @SerializedName ("public")
    private boolean isPublic;
+   @SerializedName ("name")
    private String name;
-
-   public Group(String name) {
-      this.name = name;
-   }
 
    public Group() {
    }
