@@ -1,4 +1,4 @@
-package com.frick.maximilian.coffeetime.models;
+package com.frick.maximilian.coffeetime.data.models;
 
 import com.google.gson.annotations.SerializedName;
 

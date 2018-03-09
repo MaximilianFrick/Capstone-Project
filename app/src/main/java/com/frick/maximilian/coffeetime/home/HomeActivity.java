@@ -23,7 +23,7 @@ import com.frick.maximilian.coffeetime.R;
 import com.frick.maximilian.coffeetime.SplashScreen;
 import com.frick.maximilian.coffeetime.core.Injector;
 import com.frick.maximilian.coffeetime.data.DatabaseBO;
-import com.frick.maximilian.coffeetime.models.Group;
+import com.frick.maximilian.coffeetime.data.models.Group;
 import com.frick.maximilian.coffeetime.status.StatusActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

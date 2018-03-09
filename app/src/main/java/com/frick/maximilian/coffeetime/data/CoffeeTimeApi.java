@@ -1,7 +1,7 @@
 package com.frick.maximilian.coffeetime.data;
 
 
-import com.frick.maximilian.coffeetime.models.Group;
+import com.frick.maximilian.coffeetime.data.models.Group;
 
 import java.util.List;
 

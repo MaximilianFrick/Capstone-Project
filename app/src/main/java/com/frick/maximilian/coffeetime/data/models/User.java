@@ -1,4 +1,4 @@
-package com.frick.maximilian.coffeetime.models;
+package com.frick.maximilian.coffeetime.data.models;
 
 public class User {
    private String id;

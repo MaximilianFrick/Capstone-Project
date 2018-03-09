@@ -1,7 +1,7 @@
 package com.frick.maximilian.coffeetime.data;
 
-import com.frick.maximilian.coffeetime.models.Group;
-import com.frick.maximilian.coffeetime.models.User;
+import com.frick.maximilian.coffeetime.data.models.Group;
+import com.frick.maximilian.coffeetime.data.models.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
