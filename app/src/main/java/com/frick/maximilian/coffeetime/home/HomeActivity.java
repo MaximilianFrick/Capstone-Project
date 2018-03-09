@@ -22,15 +22,13 @@ import com.firebase.ui.database.SnapshotParser;
 import com.frick.maximilian.coffeetime.R;
 import com.frick.maximilian.coffeetime.SplashScreen;
 import com.frick.maximilian.coffeetime.core.Injector;
-import com.frick.maximilian.coffeetime.framework.data.DatabaseBO;
-import com.frick.maximilian.coffeetime.framework.models.Group;
+import com.frick.maximilian.coffeetime.data.DatabaseBO;
+import com.frick.maximilian.coffeetime.models.Group;
+import com.frick.maximilian.coffeetime.status.StatusActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import javax.inject.Inject;
 
@@ -46,7 +44,6 @@ public class HomeActivity extends AppCompatActivity implements GroupSelectedList
    @BindView (R.id.recyclerview)
    RecyclerView recyclerView;
    private GroupsAdapter adapter;
-   private FirebaseUser fireBaseUser;
    private DatabaseReference ref;
 
    @Override
@@ -57,7 +54,9 @@ public class HomeActivity extends AppCompatActivity implements GroupSelectedList
 
    @Override
    public void onGroupClicked(final Group group) {
-      databaseBO.joinGroup(group.getId(), fireBaseUser.getUid());
+      databaseBO.joinGroup(group.getId());
+      startActivity(StatusActivity.newIntent(this, group.getId()));
+      finish();
    }
 
    @Override
@@ -88,11 +87,6 @@ public class HomeActivity extends AppCompatActivity implements GroupSelectedList
       ButterKnife.bind(this);
       Injector.getAppComponent()
             .inject(this);
-      ref = FirebaseDatabase.getInstance()
-            .getReference();
-      fireBaseUser = FirebaseAuth.getInstance()
-            .getCurrentUser();
-      saveUserToDb();
       initList();
    }
 
@@ -117,7 +111,6 @@ public class HomeActivity extends AppCompatActivity implements GroupSelectedList
       databaseBO.createGroup(new Group(groupName, true));
    }
 
-   @NonNull
    private SnapshotParser<Group> getSnapshotParser() {
       return new SnapshotParser<Group>() {
          @Override
@@ -135,8 +128,7 @@ public class HomeActivity extends AppCompatActivity implements GroupSelectedList
    private void initList() {
       SnapshotParser<Group> parser = getSnapshotParser();
       FirebaseRecyclerOptions<Group> options =
-            new FirebaseRecyclerOptions.Builder<Group>().setQuery(ref.child(DatabaseBO.GROUPS),
-                  parser)
+            new FirebaseRecyclerOptions.Builder<Group>().setQuery(databaseBO.getGroupsRef(), parser)
                   .build();
       adapter = new GroupsAdapter(options, this);
       if (adapter.getItemCount() > 0) {
@@ -146,10 +138,6 @@ public class HomeActivity extends AppCompatActivity implements GroupSelectedList
       }
       recyclerView.setLayoutManager(new LinearLayoutManager(this));
       recyclerView.setAdapter(adapter);
-   }
-
-   private void saveUserToDb() {
-
    }
 
    private void showAddGroupNameDialog() {

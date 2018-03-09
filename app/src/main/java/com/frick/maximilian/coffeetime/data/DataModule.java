@@ -1,11 +1,9 @@
-package com.frick.maximilian.coffeetime.framework.core;
+package com.frick.maximilian.coffeetime.data;
 
 import android.content.Context;
 
-import com.frick.maximilian.coffeetime.framework.BuildConfig;
-import com.frick.maximilian.coffeetime.framework.R;
-import com.frick.maximilian.coffeetime.framework.data.DatabaseBO;
-import com.frick.maximilian.coffeetime.framework.rest.CoffeeTimeApi;
+import com.frick.maximilian.coffeetime.BuildConfig;
+import com.frick.maximilian.coffeetime.R;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.File;
@@ -50,7 +48,6 @@ public class DataModule {
       }
       return httpLoggingInterceptor;
    }
-
 
    @Provides
    @Singleton

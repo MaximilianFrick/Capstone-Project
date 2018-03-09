@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.frick.maximilian.coffeetime.R;
-import com.frick.maximilian.coffeetime.framework.models.Group;
+import com.frick.maximilian.coffeetime.models.Group;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

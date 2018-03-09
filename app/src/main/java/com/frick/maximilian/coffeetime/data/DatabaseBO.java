@@ -1,7 +1,9 @@
-package com.frick.maximilian.coffeetime.framework.data;
+package com.frick.maximilian.coffeetime.data;
 
-import com.frick.maximilian.coffeetime.framework.models.Group;
-import com.frick.maximilian.coffeetime.framework.models.User;
+import com.frick.maximilian.coffeetime.models.Group;
+import com.frick.maximilian.coffeetime.models.User;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,7 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseBO {
-   public static final String GROUPS = "groups";
+   private static final String GROUPS = "groups";
+   private static final String GROUP = "group";
    private static final String MEMBERS = "members";
    private static final String USERS = "users";
    private final DatabaseReference groups;
@@ -23,14 +26,20 @@ public class DatabaseBO {
       users = databaseReference.child(USERS);
    }
 
-   public void addUserToDb(String uuid, User user) {
-      users.child(uuid)
-            .setValue(user);
+   public void addUserToDb() {
+      FirebaseUser user = getCurrentUser();
+      users.child(user.getUid())
+            .setValue(user.getDisplayName());
    }
 
    public void createGroup(Group group) {
       groups.push()
             .setValue(group);
+   }
+
+   public DatabaseReference getGroupOfUser(String uuid) {
+      return users.child(uuid)
+            .child(GROUP);
    }
 
    public DatabaseReference getGroupsRef() {
@@ -73,14 +82,30 @@ public class DatabaseBO {
       return users;
    }
 
-   public void joinGroup(String groupId, String uuid) {
+   public void joinGroup(String groupId) {
+      String uuid = getCurrentUser().getUid();
       groups.child(groupId)
             .child(MEMBERS)
             .child(uuid)
             .setValue(true);
       users.child(uuid)
-            .child(GROUPS)
-            .child(groupId)
-            .setValue(true);
+            .child(GROUP)
+            .setValue(groupId);
+   }
+
+   public void leaveGroup(String groupId) {
+      String uuid = getCurrentUser().getUid();
+      groups.child(groupId)
+            .child(MEMBERS)
+            .child(uuid)
+            .removeValue();
+      users.child(uuid)
+            .child(GROUP)
+            .removeValue();
+   }
+
+   private FirebaseUser getCurrentUser() {
+      return FirebaseAuth.getInstance()
+            .getCurrentUser();
    }
 }

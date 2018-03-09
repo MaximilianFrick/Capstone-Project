@@ -1,6 +1,7 @@
-package com.frick.maximilian.coffeetime.framework.rest;
+package com.frick.maximilian.coffeetime.data;
 
-import com.frick.maximilian.coffeetime.framework.models.Group;
+
+import com.frick.maximilian.coffeetime.models.Group;
 
 import java.util.List;
 

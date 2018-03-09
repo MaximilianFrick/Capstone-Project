@@ -1,8 +1,13 @@
-package com.frick.maximilian.coffeetime.framework.models;
+package com.frick.maximilian.coffeetime.models;
 
 public class User {
    private String id;
    private String name;
+   private String groupId;
+
+   public String getGroupId() {
+      return groupId;
+   }
 
    public User(String name) {
       this.name = name;

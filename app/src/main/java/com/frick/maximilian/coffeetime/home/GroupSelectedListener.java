@@ -1,6 +1,6 @@
 package com.frick.maximilian.coffeetime.home;
 
-import com.frick.maximilian.coffeetime.framework.models.Group;
+import com.frick.maximilian.coffeetime.models.Group;
 
 interface GroupSelectedListener {
    void onGroupClicked(Group group);
