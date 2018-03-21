@@ -1,4 +1,4 @@
-package com.frick.maximilian.coffeetime;
+package com.frick.maximilian.coffeetime.core;
 
 import android.util.Log;
 

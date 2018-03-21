@@ -1,4 +1,4 @@
-package com.frick.maximilian.coffeetime;
+package com.frick.maximilian.coffeetime.core;
 
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.FirebaseInstanceIdService;

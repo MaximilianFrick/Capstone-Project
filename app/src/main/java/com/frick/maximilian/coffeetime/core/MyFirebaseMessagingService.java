@@ -1,4 +1,4 @@
-package com.frick.maximilian.coffeetime;
+package com.frick.maximilian.coffeetime.core;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -13,6 +13,7 @@ import android.support.v4.app.NotificationCompat;
 import com.firebase.jobdispatcher.FirebaseJobDispatcher;
 import com.firebase.jobdispatcher.GooglePlayDriver;
 import com.firebase.jobdispatcher.Job;
+import com.frick.maximilian.coffeetime.R;
 import com.frick.maximilian.coffeetime.status.StatusActivity;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -123,6 +124,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
       NotificationManager notificationManager =
             (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+      if (notificationManager == null) {
+         return;
+      }
       // Since android Oreo notification channel is needed.
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
          NotificationChannel channel =
