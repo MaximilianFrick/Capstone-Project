@@ -3,5 +3,30 @@
    android:layout_width="match_parent"
    android:layout_height="match_parent">
 
+   <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+      <Button
+         android:id="@+id/ask_button"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="ask for round of coffee" />
+
+      <Button
+         android:id="@+id/reset_button"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="reset coffee status" />
+
+   </LinearLayout>
+
+   <TextView
+      android:id="@+id/status"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:text="idle" />
 
 </FrameLayout>

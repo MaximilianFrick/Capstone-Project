@@ -9,14 +9,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseBO {
-   private static final String GROUPS = "groups";
    private static final String GROUP = "group";
+   private static final String GROUPS = "groups";
    private static final String MEMBERS = "members";
+   private static final String STATUS = "status";
    private static final String USERS = "users";
    private final DatabaseReference groups;
    private final DatabaseReference users;
@@ -91,6 +93,10 @@ public class DatabaseBO {
       users.child(uuid)
             .child(GROUP)
             .setValue(groupId);
+
+      // Subscribe to group for notifications
+      FirebaseMessaging.getInstance()
+            .subscribeToTopic(groupId);
    }
 
    public void leaveGroup(String groupId) {
@@ -102,6 +108,13 @@ public class DatabaseBO {
       users.child(uuid)
             .child(GROUP)
             .removeValue();
+
+      FirebaseMessaging.getInstance()
+            .unsubscribeFromTopic(groupId);
+   }
+
+   public void setStatus(String groupId, Integer coffeeStatus) {
+      groups.child(groupId).child(STATUS).setValue(coffeeStatus);
    }
 
    private FirebaseUser getCurrentUser() {

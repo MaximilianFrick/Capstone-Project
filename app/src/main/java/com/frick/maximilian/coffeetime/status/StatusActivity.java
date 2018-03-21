@@ -20,12 +20,16 @@ import com.google.firebase.database.ValueEventListener;
 
 import javax.inject.Inject;
 
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class StatusActivity extends AppCompatActivity {
 
    private static final String EXTRA_GROUP = "extra.group";
    @Inject
    DatabaseBO databaseBO;
    private Group group;
+   private String groupId;
 
    public static Intent newIntent(Context context, String groupId) {
       Intent intent = new Intent(context, StatusActivity.class);
@@ -54,7 +58,22 @@ public class StatusActivity extends AppCompatActivity {
       Injector.getAppComponent()
             .inject(this);
       setContentView(R.layout.status_activity);
+      ButterKnife.bind(this);
       loadExtrasFromIntent();
+   }
+
+   @OnClick (R.id.ask_button)
+   void onAskClicked() {
+      sendAskNotificationToAllMembers();
+   }
+
+   private void sendAskNotificationToAllMembers() {
+      databaseBO.setStatus(groupId, CoffeeStatus.ASKING);
+   }
+
+   @OnClick(R.id.reset_button)
+   void onResetClicked() {
+      databaseBO.setStatus(groupId, CoffeeStatus.IDLE);
    }
 
    private void finishAndStartHome() {
@@ -68,7 +87,7 @@ public class StatusActivity extends AppCompatActivity {
          return;
       }
       if (extras.containsKey(EXTRA_GROUP)) {
-         final String groupId = extras.getString(EXTRA_GROUP);
+         groupId = extras.getString(EXTRA_GROUP);
          databaseBO.getGroupsRef()
                .child(groupId)
                .addValueEventListener(new ValueEventListener() {
