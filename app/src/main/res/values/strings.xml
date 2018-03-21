@@ -6,4 +6,9 @@
    <string name="add_group_dialog_msg">Choose a name for your new group:</string>
    <string name="ok">OK</string>
    <string name="abort">Abort</string>
+   <string name="reset">RESET</string>
+   <string name="emptiness_title">Emptiness</string>
+   <string name="emptiness_description">there is no coffee at the moment</string>
+   <string name="action_ask">ASK</string>
+   <string name="action_new">NEW</string>
 </resources>

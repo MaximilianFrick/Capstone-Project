@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -14,12 +16,14 @@ import com.frick.maximilian.coffeetime.core.Injector;
 import com.frick.maximilian.coffeetime.data.DatabaseBO;
 import com.frick.maximilian.coffeetime.data.models.Group;
 import com.frick.maximilian.coffeetime.home.HomeActivity;
+import com.frick.maximilian.coffeetime.status.views.StatusView.CoffeeStatus;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -28,6 +32,9 @@ public class StatusActivity extends AppCompatActivity {
    private static final String EXTRA_GROUP = "extra.group";
    @Inject
    DatabaseBO databaseBO;
+   @BindView (R.id.recyclerview)
+   RecyclerView recyclerView;
+   private StatusAdapter adapter;
    private Group group;
    private String groupId;
 
@@ -60,25 +67,40 @@ public class StatusActivity extends AppCompatActivity {
       setContentView(R.layout.status_activity);
       ButterKnife.bind(this);
       loadExtrasFromIntent();
+      initRecyclerView();
+      displayStatus();
    }
 
-   @OnClick (R.id.ask_button)
-   void onAskClicked() {
-      sendAskNotificationToAllMembers();
-   }
-
-   private void sendAskNotificationToAllMembers() {
-      databaseBO.setStatus(groupId, CoffeeStatus.ASKING);
-   }
-
-   @OnClick(R.id.reset_button)
+   @OnClick (R.id.reset)
    void onResetClicked() {
-      databaseBO.setStatus(groupId, CoffeeStatus.IDLE);
+      databaseBO.setStatus(CoffeeStatus.IDLE);
+   }
+
+   private void displayStatus() {
+      databaseBO.getStatusRef(groupId)
+            .addValueEventListener(new ValueEventListener() {
+               @Override
+               public void onCancelled(DatabaseError databaseError) {
+
+               }
+
+               @Override
+               public void onDataChange(DataSnapshot dataSnapshot) {
+                  Long status = (Long) dataSnapshot.getValue();
+                  adapter.setStatus(status != null ? status.intValue() : 0);
+               }
+            });
    }
 
    private void finishAndStartHome() {
       startActivity(new Intent(this, HomeActivity.class));
       finish();
+   }
+
+   private void initRecyclerView() {
+      adapter = new StatusAdapter();
+      recyclerView.setLayoutManager(new LinearLayoutManager(this));
+      recyclerView.setAdapter(adapter);
    }
 
    private void loadExtrasFromIntent() {
@@ -88,6 +110,7 @@ public class StatusActivity extends AppCompatActivity {
       }
       if (extras.containsKey(EXTRA_GROUP)) {
          groupId = extras.getString(EXTRA_GROUP);
+         databaseBO.setCurrentGroup(groupId);
          databaseBO.getGroupsRef()
                .child(groupId)
                .addValueEventListener(new ValueEventListener() {

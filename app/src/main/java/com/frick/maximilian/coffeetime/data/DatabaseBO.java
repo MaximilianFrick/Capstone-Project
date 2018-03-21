@@ -22,6 +22,7 @@ public class DatabaseBO {
    private static final String USERS = "users";
    private final DatabaseReference groups;
    private final DatabaseReference users;
+   private String currentGroupId;
 
    public DatabaseBO(DatabaseReference databaseReference) {
       groups = databaseReference.child(GROUPS);
@@ -46,6 +47,11 @@ public class DatabaseBO {
 
    public DatabaseReference getGroupsRef() {
       return groups;
+   }
+
+   public DatabaseReference getStatusRef(String groupId) {
+      return groups.child(groupId)
+            .child(STATUS);
    }
 
    public List<User> getUsersOfGroup(String groupId) {
@@ -94,6 +100,8 @@ public class DatabaseBO {
             .child(GROUP)
             .setValue(groupId);
 
+      currentGroupId = groupId;
+
       // Subscribe to group for notifications
       FirebaseMessaging.getInstance()
             .subscribeToTopic(groupId);
@@ -109,12 +117,20 @@ public class DatabaseBO {
             .child(GROUP)
             .removeValue();
 
+      currentGroupId = null;
+
       FirebaseMessaging.getInstance()
             .unsubscribeFromTopic(groupId);
    }
 
-   public void setStatus(String groupId, Integer coffeeStatus) {
-      groups.child(groupId).child(STATUS).setValue(coffeeStatus);
+   public void setCurrentGroup(String groupId) {
+      this.currentGroupId = groupId;
+   }
+
+   public void setStatus(Integer coffeeStatus) {
+      groups.child(currentGroupId)
+            .child(STATUS)
+            .setValue(coffeeStatus);
    }
 
    private FirebaseUser getCurrentUser() {

@@ -6,4 +6,9 @@
    <color name="colorAccent">#D7791C</color>
    <color name="grey">#9B9B9B</color>
    <color name="light_grey">#E6FFFFFF</color>
+   <color name="emptiness">@color/colorAccent</color>
+   <color name="asking">#7D3D25</color>
+   <color name="preparation">#F5A623</color>
+   <color name="patience">#8B572A</color>
+   <color name="coffeeness">#000000</color>
 </resources>
