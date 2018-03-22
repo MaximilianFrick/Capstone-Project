@@ -11,4 +11,6 @@
    <string name="emptiness_description">there is no coffee at the moment</string>
    <string name="action_ask">ASK</string>
    <string name="action_new">NEW</string>
+   <string name="asking_title">Asking</string>
+   <string name="asking_description">Who is in for a new round of coffee?</string>
 </resources>
