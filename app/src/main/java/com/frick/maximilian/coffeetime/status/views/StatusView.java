@@ -4,10 +4,13 @@ public interface StatusView<Presenter> {
 
    interface CoffeeStatus {
       int ASKING = 1;
+      int COFFEENESS = 4;
       int IDLE = 0;
+      int PATIENCE = 3;
+      int PREPARING = 2;
    }
 
-   void setPresenter(Presenter presenter);
-
    int getViewType();
+
+   void setPresenter(Presenter presenter);
 }

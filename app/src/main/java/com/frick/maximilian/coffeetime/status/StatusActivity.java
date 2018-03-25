@@ -73,11 +73,11 @@ public class StatusActivity extends AppCompatActivity {
 
    @OnClick (R.id.reset)
    void onResetClicked() {
-      databaseBO.setStatus(CoffeeStatus.IDLE);
+      databaseBO.resetSession();
    }
 
    private void displayStatus() {
-      databaseBO.getStatusRef(groupId)
+      databaseBO.getStatusRef()
             .addValueEventListener(new ValueEventListener() {
                @Override
                public void onCancelled(DatabaseError databaseError) {
@@ -87,7 +87,7 @@ public class StatusActivity extends AppCompatActivity {
                @Override
                public void onDataChange(DataSnapshot dataSnapshot) {
                   Long status = (Long) dataSnapshot.getValue();
-                  adapter.setStatus(status != null ? status.intValue() : 0);
+                  adapter.setStatus(status != null ? status.intValue() : CoffeeStatus.IDLE);
                }
             });
    }

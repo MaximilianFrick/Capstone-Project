@@ -6,6 +6,7 @@ import com.frick.maximilian.coffeetime.SplashScreen;
 import com.frick.maximilian.coffeetime.data.DataModule;
 import com.frick.maximilian.coffeetime.home.HomeActivity;
 import com.frick.maximilian.coffeetime.status.StatusActivity;
+import com.frick.maximilian.coffeetime.status.views.asking.AskingPresenter;
 import com.frick.maximilian.coffeetime.status.views.emptiness.EmptinessPresenter;
 
 import javax.inject.Singleton;
@@ -27,4 +28,6 @@ public interface AppComponent {
    void inject(StatusActivity statusActivity);
 
    void inject(EmptinessPresenter emptinessPresenter);
+
+   void inject(AskingPresenter askingPresenter);
 }
