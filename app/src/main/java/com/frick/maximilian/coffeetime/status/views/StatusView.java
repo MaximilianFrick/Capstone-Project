@@ -7,7 +7,7 @@ public interface StatusView<Presenter> {
       int COFFEENESS = 4;
       int IDLE = 0;
       int PATIENCE = 3;
-      int PREPARING = 2;
+      int PREPARATION = 2;
    }
 
    int getViewType();

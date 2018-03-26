@@ -4,14 +4,17 @@ import com.frick.maximilian.coffeetime.data.models.Group;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 public class DatabaseBO {
+   private static final String BREWING_TIME = "brewingtime";
    private static final String CUPDRINKERS = "cupdrinkers";
    private static final String GROUP = "group";
    private static final String GROUPS = "groups";
    private static final String MEMBERS = "members";
    private static final String SESSION = "session";
+   private static final String STARTTIME = "starttime";
    private static final String STATUS = "status";
    private static final String USERS = "users";
    private final DatabaseReference groups;
@@ -67,38 +70,6 @@ public class DatabaseBO {
             .child(STATUS);
    }
 
-   //   public List<User> getUsersOfGroup(String groupId) {
-   //      final List<User> usersInGroup = new ArrayList<>();
-   //      Query members = groups.child(groupId)
-   //            .child(MEMBERS);
-   //      members.addListenerForSingleValueEvent(new ValueEventListener() {
-   //         @Override
-   //         public void onCancelled(DatabaseError databaseError) {
-   //
-   //         }
-   //
-   //         @Override
-   //         public void onDataChange(DataSnapshot dataSnapshot) {
-   //            for (DataSnapshot member : dataSnapshot.getChildren()) {
-   //               users.child(member.getKey())
-   //                     .addListenerForSingleValueEvent(new ValueEventListener() {
-   //                        @Override
-   //                        public void onCancelled(DatabaseError databaseError) {
-   //
-   //                        }
-   //
-   //                        @Override
-   //                        public void onDataChange(DataSnapshot dataSnapshot) {
-   //                           User user = dataSnapshot.getValue(User.class);
-   //                           usersInGroup.add(user);
-   //                        }
-   //                     });
-   //            }
-   //         }
-   //      });
-   //      return usersInGroup;
-   //   }
-
    public void joinGroup(String groupId) {
       String uuid = getCurrentUser().getUid();
       groups.child(groupId)
@@ -144,11 +115,25 @@ public class DatabaseBO {
       this.currentGroupId = groupId;
    }
 
+   public void setStartTime() {
+      groups.child(currentGroupId)
+            .child(SESSION)
+            .child(STARTTIME)
+            .setValue(ServerValue.TIMESTAMP);
+   }
+
    public void setStatus(Integer coffeeStatus) {
       groups.child(currentGroupId)
             .child(SESSION)
             .child(STATUS)
             .setValue(coffeeStatus);
+   }
+
+   public void setTimeToBrew(long timeInSecs) {
+      groups.child(currentGroupId)
+            .child(SESSION)
+            .child(BREWING_TIME)
+            .setValue(timeInSecs);
    }
 
    private FirebaseUser getCurrentUser() {

@@ -15,4 +15,7 @@
    <string name="asking_description">Who is in for a new round of coffee? Only one cup per person at the moment.</string>
    <string name="action_plus_one">+1</string>
    <string name="action_prepare">prepare</string>
+   <string name="preparation_title">Preparation</string>
+   <string name="preparation_description">Press \"START\" when you finished preparing the coffee!</string>
+   <string name="action_start">Start</string>
 </resources>

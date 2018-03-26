@@ -2,6 +2,7 @@ package com.frick.maximilian.coffeetime.status.views.asking;
 
 import com.frick.maximilian.coffeetime.core.Injector;
 import com.frick.maximilian.coffeetime.data.DatabaseBO;
+import com.frick.maximilian.coffeetime.status.views.StatusView.CoffeeStatus;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -37,5 +38,9 @@ public class AskingPresenter {
                   view.displayAmountOfCups(cupDrinkerAmount);
                }
             });
+   }
+
+   void setPrepareStatus() {
+      databaseBO.setStatus(CoffeeStatus.PREPARATION);
    }
 }

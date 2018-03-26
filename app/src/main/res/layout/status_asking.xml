@@ -45,7 +45,7 @@
             android:text="@string/asking_description"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@android:color/white"
-            app:layout_constraintEnd_toStartOf="@+id/amount_cups"
+            app:layout_constraintEnd_toStartOf="@+id/cups_amount"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/primary_text" />
 
@@ -60,7 +60,7 @@
             app:srcCompat="@drawable/ic_cup" />
 
          <TextView
-            android:id="@+id/amount_cups"
+            android:id="@+id/cups_amount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"

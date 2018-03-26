@@ -16,7 +16,7 @@ import butterknife.OnClick;
 
 public class AskingView extends FrameLayout
       implements StatusView<AskingPresenter>, AskingContract.View {
-   @BindView (R.id.amount_cups)
+   @BindView (R.id.cups_amount)
    TextView amountOfCupsView;
    private AskingPresenter askingPresenter;
 
@@ -53,6 +53,11 @@ public class AskingView extends FrameLayout
       ButterKnife.bind(this);
       setPresenter(new AskingPresenter(this));
       askingPresenter.listenToNumberOfDrinkers();
+   }
+
+   @OnClick(R.id.action_button_2)
+   void onPrepareClicked() {
+      askingPresenter.setPrepareStatus();
    }
 
    @OnClick (R.id.action_button_1)
