@@ -8,6 +8,7 @@ import com.frick.maximilian.coffeetime.home.HomeActivity;
 import com.frick.maximilian.coffeetime.status.StatusActivity;
 import com.frick.maximilian.coffeetime.status.views.asking.AskingPresenter;
 import com.frick.maximilian.coffeetime.status.views.emptiness.EmptinessPresenter;
+import com.frick.maximilian.coffeetime.status.views.patience.PatiencePresenter;
 import com.frick.maximilian.coffeetime.status.views.preparation.PreparationPresenter;
 
 import javax.inject.Singleton;
@@ -33,4 +34,6 @@ public interface AppComponent {
    void inject(AskingPresenter askingPresenter);
 
    void inject(PreparationPresenter preparationPresenter);
+
+   void inject(PatiencePresenter patiencePresenter);
 }

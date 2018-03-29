@@ -1,14 +1,13 @@
 package com.frick.maximilian.coffeetime.data;
 
-
-import com.frick.maximilian.coffeetime.data.models.Group;
-
-import java.util.List;
+import com.frick.maximilian.coffeetime.data.models.ServerTime;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.Query;
 
 public interface CoffeeTimeApi {
-   @GET ("groups")
-   Observable<List<Group>> getGroups();
+   @GET ("currentdate")
+   Observable<ServerTime> getCurrentServerTime(@Query("groupId") String groupId);
 }

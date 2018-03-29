@@ -5,7 +5,7 @@ public class PreparationViewModel {
    public static final class Builder {
       private String coffeeAmount;
       private String cups;
-      private long timeInSecs;
+      private long timeInMillis;
       private String timer;
       private String waterAmount;
 
@@ -26,8 +26,8 @@ public class PreparationViewModel {
          return this;
       }
 
-      public Builder timeInSecs(long val) {
-         timeInSecs = val;
+      public Builder timeInMillis(long val) {
+         timeInMillis = val;
          return this;
       }
 
@@ -44,7 +44,7 @@ public class PreparationViewModel {
 
    private String coffeeAmount;
    private String cups;
-   private long timeInSecs;
+   private long timeInMillis;
    private String timer;
    private String waterAmount;
 
@@ -52,7 +52,7 @@ public class PreparationViewModel {
       coffeeAmount = builder.coffeeAmount;
       cups = builder.cups;
       timer = builder.timer;
-      timeInSecs = builder.timeInSecs;
+      timeInMillis = builder.timeInMillis;
       waterAmount = builder.waterAmount;
    }
 
@@ -64,8 +64,8 @@ public class PreparationViewModel {
       return cups;
    }
 
-   public long getTimeInSecs() {
-      return timeInSecs;
+   public long getTimeInMillis() {
+      return timeInMillis;
    }
 
    public String getTimer() {

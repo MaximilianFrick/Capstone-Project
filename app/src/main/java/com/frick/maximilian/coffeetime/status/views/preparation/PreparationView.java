@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.frick.maximilian.coffeetime.R;
 import com.frick.maximilian.coffeetime.status.views.StatusView;
@@ -43,6 +44,12 @@ public class PreparationView extends FrameLayout
 
    @Override
    public void displayPreparationInformation(PreparationViewModel data) {
+      if (Integer.valueOf(data.getCups()) == 0) {
+         Toast.makeText(getContext(), "Add at least one cup!", Toast.LENGTH_SHORT)
+               .show();
+         preparationPresenter.setAskingStatus();
+         return;
+      }
       coffeeAmountView.setText(data.getCoffeeAmount());
       cupsAmountView.setText(data.getCups());
       waterAmountView.setText(data.getWaterAmount());
@@ -59,9 +66,10 @@ public class PreparationView extends FrameLayout
       this.preparationPresenter = preparationPresenter;
    }
 
-   @OnClick(R.id.action_button_1)
-   void onStartClicked() {
-      preparationPresenter.setPatienceStatus();
+   @Override
+   protected void onAttachedToWindow() {
+      super.onAttachedToWindow();
+      preparationPresenter.getAmountOfCups();
    }
 
    @Override
@@ -69,6 +77,10 @@ public class PreparationView extends FrameLayout
       super.onFinishInflate();
       ButterKnife.bind(this);
       setPresenter(new PreparationPresenter(this));
-      preparationPresenter.getAmountOfCups();
+   }
+
+   @OnClick (R.id.action_button_1)
+   void onStartClicked() {
+      preparationPresenter.setPatienceStatus();
    }
 }

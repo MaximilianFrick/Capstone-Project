@@ -11,4 +11,5 @@
    <color name="preparation">#F5A623</color>
    <color name="patience">#8B572A</color>
    <color name="coffeeness">#000000</color>
+   <color name="progress_bar">#4A321D</color>
 </resources>

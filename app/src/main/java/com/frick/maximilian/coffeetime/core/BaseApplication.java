@@ -3,8 +3,6 @@ package com.frick.maximilian.coffeetime.core;
 import android.app.Application;
 
 import com.frick.maximilian.coffeetime.BuildConfig;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Logger;
 
 import timber.log.Timber;
 
@@ -16,6 +14,6 @@ public class BaseApplication extends Application {
       if (BuildConfig.DEBUG) {
          Timber.plant(new Timber.DebugTree());
       }
-      FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG);
+//      FirebaseDatabase.getInstance().setLogLevel(Logger.Level.DEBUG);
    }
 }

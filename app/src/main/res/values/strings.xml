@@ -18,4 +18,7 @@
    <string name="preparation_title">Preparation</string>
    <string name="preparation_description">Press \"START\" when you finished preparing the coffee!</string>
    <string name="action_start">Start</string>
+   <string name="patience_title">Patience</string>
+   <string name="patience_description">Relax - Coffee is brewing and soon be ready. Press \"DONE\" if coffee has finished before timer ended.</string>
+   <string name="action_done">DONE</string>
 </resources>

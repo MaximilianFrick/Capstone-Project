@@ -55,6 +55,14 @@ public class DatabaseBO {
             .child(CUPDRINKERS);
    }
 
+   public String getCurrentGroup() {
+      return currentGroupId;
+   }
+
+   public void setCurrentGroup(String groupId) {
+      this.currentGroupId = groupId;
+   }
+
    public DatabaseReference getGroupOfUser(String uuid) {
       return users.child(uuid)
             .child(GROUP);
@@ -111,10 +119,6 @@ public class DatabaseBO {
             .unsubscribeFromTopic(currentGroupId + SESSION);
    }
 
-   public void setCurrentGroup(String groupId) {
-      this.currentGroupId = groupId;
-   }
-
    public void setStartTime() {
       groups.child(currentGroupId)
             .child(SESSION)
@@ -129,11 +133,11 @@ public class DatabaseBO {
             .setValue(coffeeStatus);
    }
 
-   public void setTimeToBrew(long timeInSecs) {
+   public void setTimeToBrew(long timeInMillis) {
       groups.child(currentGroupId)
             .child(SESSION)
             .child(BREWING_TIME)
-            .setValue(timeInSecs);
+            .setValue(timeInMillis);
    }
 
    private FirebaseUser getCurrentUser() {

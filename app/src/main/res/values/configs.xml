@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-   <string name="base_url">www.udacity.com</string>
+   <string name="base_url">https://us-central1-udacity-e29e9.cloudfunctions.net/</string>
 </resources>

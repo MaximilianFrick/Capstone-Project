@@ -22,6 +22,10 @@ public class PreparationPresenter {
       this.view = view;
    }
 
+   public void setAskingStatus() {
+      databaseBO.setStatus(CoffeeStatus.ASKING);
+   }
+
    void getAmountOfCups() {
       databaseBO.getCupDrinkers()
             .addValueEventListener(new ValueEventListener() {
@@ -33,8 +37,8 @@ public class PreparationPresenter {
                @Override
                public void onDataChange(DataSnapshot dataSnapshot) {
                   int cupsAmount = (int) dataSnapshot.getChildrenCount();
-                  PreparationViewModel preparationObject = Barista.getPreparationObject(cupsAmount);
-                  databaseBO.setTimeToBrew(preparationObject.getTimeInSecs());
+                  PreparationViewModel preparationObject = Barista.buildPreparatioViewModel(cupsAmount);
+                  databaseBO.setTimeToBrew(preparationObject.getTimeInMillis());
                   view.displayPreparationInformation(preparationObject);
                }
             });

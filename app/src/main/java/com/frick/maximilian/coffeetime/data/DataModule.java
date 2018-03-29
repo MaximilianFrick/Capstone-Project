@@ -5,6 +5,8 @@ import android.content.Context;
 import com.frick.maximilian.coffeetime.BuildConfig;
 import com.frick.maximilian.coffeetime.R;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.io.File;
 
@@ -44,7 +46,7 @@ public class DataModule {
       if (BuildConfig.DEBUG) {
          httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
       } else {
-         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
+         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
       }
       return httpLoggingInterceptor;
    }
@@ -58,22 +60,6 @@ public class DataModule {
       final Cache cache = new Cache(cacheDirectory, CACHE_SIZE);
       builder.addInterceptor(loggingInterceptor);
       builder.cache(cache);
-      //      builder.addInterceptor(new Interceptor() {
-      //         @Override
-      //         public Response intercept(Chain chain) throws IOException {
-      //            Request original = chain.request();
-      //            HttpUrl originalHttpUrl = original.url();
-      //            HttpUrl url = originalHttpUrl.newBuilder()
-      //                  .build();
-      //
-      //            // Request customization: add request headers
-      //            Request.Builder requestBuilder = original.newBuilder()
-      //                  .url(url);
-      //
-      //            Request request = requestBuilder.build();
-      //            return chain.proceed(request);
-      //         }
-      //      });
       return builder.build();
    }
 
@@ -81,6 +67,8 @@ public class DataModule {
    @Singleton
    Retrofit provideRetrofit(Context context, OkHttpClient httpClient) {
       Retrofit.Builder builder = new Retrofit.Builder();
+      Gson gson = new GsonBuilder().setLenient()
+            .create();
       builder.baseUrl(context.getString(R.string.base_url))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
             .addConverterFactory(GsonConverterFactory.create())
