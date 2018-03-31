@@ -21,4 +21,7 @@
    <string name="patience_title">Patience</string>
    <string name="patience_description">Relax - Coffee is brewing and soon be ready. Press \"DONE\" if coffee has finished before timer ended.</string>
    <string name="action_done">DONE</string>
+   <string name="coffeeness_title">Coffeeness</string>
+   <string name="coffeeness_description">Best moment of the day. Take a cup and enjoy!</string>
+   <string name="action_take">TAKE</string>
 </resources>

@@ -1,30 +1,29 @@
-package com.frick.maximilian.coffeetime.status.views.asking;
+package com.frick.maximilian.coffeetime.status.views.coffeeness;
 
 import com.frick.maximilian.coffeetime.core.Injector;
 import com.frick.maximilian.coffeetime.data.DatabaseBO;
-import com.frick.maximilian.coffeetime.status.views.StatusView.CoffeeStatus;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
 import javax.inject.Inject;
 
-public class AskingPresenter {
+public class CoffeenessPresenter {
    @Inject
    DatabaseBO databaseBO;
-   private AskingContract.View view;
+   private CoffeenessContract.View view;
 
-   AskingPresenter(AskingContract.View view) {
+   CoffeenessPresenter(CoffeenessContract.View view) {
       this.view = view;
       Injector.getAppComponent()
             .inject(this);
    }
 
-   void addCupDrinker() {
-      databaseBO.addMeToSession();
+   public void resetSession() {
+      databaseBO.resetSession();
    }
 
-   void listenToNumberOfDrinkers() {
+   public void retrieveAmountOfCups() {
       databaseBO.getCupDrinkers()
             .addValueEventListener(new ValueEventListener() {
                @Override
@@ -34,14 +33,16 @@ public class AskingPresenter {
 
                @Override
                public void onDataChange(DataSnapshot dataSnapshot) {
-                  long cupDrinkerAmount = dataSnapshot.getChildrenCount();
-                  view.enablePrepareButton(cupDrinkerAmount > 0);
-                  view.displayAmountOfCups(cupDrinkerAmount);
+                  Long amountOfCups = dataSnapshot.getChildrenCount();
+                  if (amountOfCups == 0) {
+                     databaseBO.resetSession();
+                  }
+                  view.showAmountOfCups(amountOfCups);
                }
             });
    }
 
-   void setPrepareStatus() {
-      databaseBO.setStatus(CoffeeStatus.PREPARATION);
+   public void takeACup() {
+      databaseBO.takeACup();
    }
 }

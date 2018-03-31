@@ -1,4 +1,4 @@
-package com.frick.maximilian.coffeetime.status.views.asking;
+package com.frick.maximilian.coffeetime.status.views.preparation;
 
 public class PreparationViewModel {
 

@@ -1,6 +1,7 @@
-package com.frick.maximilian.coffeetime.status.views.asking;
+package com.frick.maximilian.coffeetime.status;
 
 import com.frick.maximilian.coffeetime.data.models.ServerTime;
+import com.frick.maximilian.coffeetime.status.views.preparation.PreparationViewModel;
 import com.frick.maximilian.coffeetime.status.views.patience.RemainingTimeViewModel;
 
 import java.text.SimpleDateFormat;

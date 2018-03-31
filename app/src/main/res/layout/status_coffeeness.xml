@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.frick.maximilian.coffeetime.status.views.emptiness.EmptinessView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.frick.maximilian.coffeetime.status.views.coffeeness.CoffeenessView xmlns:android="http://schemas.android.com/apk/res/android"
    xmlns:app="http://schemas.android.com/apk/res-auto"
    xmlns:tools="http://schemas.android.com/tools"
    android:layout_width="match_parent"
@@ -13,7 +13,7 @@
       android:layout_marginEnd="8dp"
       android:layout_marginStart="8dp"
       android:layout_marginTop="8dp"
-      app:cardBackgroundColor="@color/emptiness"
+      app:cardBackgroundColor="@color/coffeeness"
       app:cardCornerRadius="4dp"
       tools:ignore="ContentDescription">
 
@@ -28,7 +28,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:text="@string/emptiness_title"
+            android:text="@string/coffeeness_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toStartOf="@+id/media_image"
@@ -42,7 +42,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
             android:alpha="0.6"
-            android:text="@string/emptiness_description"
+            android:text="@string/coffeeness_description"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toStartOf="@+id/media_image"
@@ -57,7 +57,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_empty_jar" />
+            app:srcCompat="@drawable/ic_full_jar" />
 
          <Button
             android:id="@+id/action_button_1"
@@ -68,7 +68,7 @@
             android:minWidth="0dp"
             android:paddingEnd="8dp"
             android:paddingStart="8dp"
-            android:text="@string/action_ask"
+            android:text="@string/action_take"
             android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +88,8 @@
             app:layout_constraintStart_toEndOf="@+id/action_button_1"
             app:layout_constraintTop_toTopOf="@+id/action_button_1" />
 
+
       </android.support.constraint.ConstraintLayout>
 
    </android.support.v7.widget.CardView>
-</com.frick.maximilian.coffeetime.status.views.emptiness.EmptinessView>
+</com.frick.maximilian.coffeetime.status.views.coffeeness.CoffeenessView>

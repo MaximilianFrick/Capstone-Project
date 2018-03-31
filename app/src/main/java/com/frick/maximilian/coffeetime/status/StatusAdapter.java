@@ -35,6 +35,9 @@ class StatusAdapter extends RecyclerView.Adapter<StatusAdapter.ViewHolder> {
    @Override
    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
       switch (viewType) {
+         case CoffeeStatus.COFFEENESS:
+            return new ViewHolder(LayoutInflater.from(parent.getContext())
+                  .inflate(R.layout.status_coffeeness, parent, false));
          case CoffeeStatus.PATIENCE:
             return new ViewHolder(LayoutInflater.from(parent.getContext())
                   .inflate(R.layout.status_patience, parent, false));

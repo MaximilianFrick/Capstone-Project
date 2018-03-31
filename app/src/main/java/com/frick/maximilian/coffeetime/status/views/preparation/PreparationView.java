@@ -6,11 +6,9 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.frick.maximilian.coffeetime.R;
 import com.frick.maximilian.coffeetime.status.views.StatusView;
-import com.frick.maximilian.coffeetime.status.views.asking.PreparationViewModel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,12 +42,6 @@ public class PreparationView extends FrameLayout
 
    @Override
    public void displayPreparationInformation(PreparationViewModel data) {
-      if (Integer.valueOf(data.getCups()) == 0) {
-         Toast.makeText(getContext(), "Add at least one cup!", Toast.LENGTH_SHORT)
-               .show();
-         preparationPresenter.setAskingStatus();
-         return;
-      }
       coffeeAmountView.setText(data.getCoffeeAmount());
       cupsAmountView.setText(data.getCups());
       waterAmountView.setText(data.getWaterAmount());

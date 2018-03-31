@@ -140,6 +140,14 @@ public class DatabaseBO {
             .setValue(timeInMillis);
    }
 
+   public void takeACup() {
+      groups.child(currentGroupId)
+            .child(SESSION)
+            .child(CUPDRINKERS)
+            .child(getCurrentUser().getUid())
+            .removeValue();
+   }
+
    private FirebaseUser getCurrentUser() {
       return FirebaseAuth.getInstance()
             .getCurrentUser();

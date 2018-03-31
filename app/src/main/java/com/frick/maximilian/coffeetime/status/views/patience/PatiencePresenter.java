@@ -5,7 +5,7 @@ import com.frick.maximilian.coffeetime.data.CoffeeTimeApi;
 import com.frick.maximilian.coffeetime.data.DatabaseBO;
 import com.frick.maximilian.coffeetime.data.models.ServerTime;
 import com.frick.maximilian.coffeetime.status.views.StatusView.CoffeeStatus;
-import com.frick.maximilian.coffeetime.status.views.asking.Barista;
+import com.frick.maximilian.coffeetime.status.Barista;
 
 import java.util.concurrent.TimeUnit;
 
