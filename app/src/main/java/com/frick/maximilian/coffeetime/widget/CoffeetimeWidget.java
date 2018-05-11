@@ -16,4 +16,3 @@ public class CoffeetimeWidget extends AppWidgetProvider {
       context.startService(intent);
    }
 }
-

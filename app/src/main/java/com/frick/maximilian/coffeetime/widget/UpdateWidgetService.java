@@ -1,5 +1,6 @@
 package com.frick.maximilian.coffeetime.widget;
 
+import android.app.PendingIntent;
 import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.widget.RemoteViews;
 
 import com.frick.maximilian.coffeetime.R;
+import com.frick.maximilian.coffeetime.SplashScreen;
 import com.frick.maximilian.coffeetime.data.DatabaseBO;
 import com.frick.maximilian.coffeetime.status.views.StatusView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -56,6 +58,10 @@ public class UpdateWidgetService extends Service {
                      }
                   });
          }
+         Intent startAppIntent = new Intent(this, SplashScreen.class);
+         PendingIntent configPendingIntent = PendingIntent.getActivity(this, 0, startAppIntent, 0);
+         remoteViews.setOnClickPendingIntent(R.id.img_in_widget, configPendingIntent);
+         manager.updateAppWidget(widgetId, remoteViews);
       }
       stopSelf();
       return super.onStartCommand(intent, flags, startId);
@@ -78,14 +84,13 @@ public class UpdateWidgetService extends Service {
                      Timber.e("[WIDGET] datasnapshot == null");
                      return;
                   }
-                  Long status = (Long) dataSnapshot.getValue();
-                  if (status == null) {
-                     return;
-                  }
-                  Timber.d("[Widget] Coffeetime Service status changed: %d", status);
                   int drawableRes;
-
-                  if (status == StatusView.CoffeeStatus.COFFEENESS) {
+                  Long status = (Long) dataSnapshot.getValue();
+                  Timber.d("[Widget] Coffeetime Service status changed: %d", status);
+                  if (status == null) {
+                     drawableRes = R.drawable.ic_widget_empty;
+                  }
+                  else if (status == StatusView.CoffeeStatus.COFFEENESS) {
                      drawableRes = R.drawable.ic_widget_full;
                   } else if (status == StatusView.CoffeeStatus.PATIENCE) {
                      drawableRes = R.drawable.ic_widget_process;

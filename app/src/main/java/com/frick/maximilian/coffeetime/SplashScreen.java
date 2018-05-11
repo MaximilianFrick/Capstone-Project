@@ -19,6 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GetTokenResult;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
@@ -36,6 +37,8 @@ public class SplashScreen extends AppCompatActivity {
    DatabaseBO databaseBO;
    List<AuthUI.IdpConfig> providers = Arrays.asList(new AuthUI.IdpConfig.GoogleBuilder().build(),
          new AuthUI.IdpConfig.EmailBuilder().build());
+   private DatabaseReference groupOfUserDbRef;
+   private ValueEventListener loadGroupOfUserListener;
    private FirebaseUser user;
 
    @Override
@@ -45,6 +48,8 @@ public class SplashScreen extends AppCompatActivity {
          IdpResponse response = IdpResponse.fromResultIntent(data);
          if (resultCode == RESULT_OK) {
             // Successfully signed in
+            user = FirebaseAuth.getInstance()
+                  .getCurrentUser();
             if (user != null) {
                Toast.makeText(this, user.getDisplayName(), Toast.LENGTH_LONG)
                      .show();
@@ -79,29 +84,38 @@ public class SplashScreen extends AppCompatActivity {
       }
    }
 
+   @Override
+   protected void onDestroy() {
+      super.onDestroy();
+      if (groupOfUserDbRef != null && loadGroupOfUserListener != null) {
+         groupOfUserDbRef.removeEventListener(loadGroupOfUserListener);
+      }
+   }
+
    private void checkIfUserHasACurrentGroup(FirebaseUser user) {
       getIdToken(user);
-      databaseBO.getGroupOfUser(user.getUid())
-            .addListenerForSingleValueEvent(new ValueEventListener() {
-               @Override
-               public void onCancelled(DatabaseError databaseError) {
-                  Toast.makeText(SplashScreen.this,
-                        String.format("Login/Register failed! ErrorCode: %s",
-                              databaseError.getMessage()), Toast.LENGTH_LONG)
-                        .show();
-               }
+      groupOfUserDbRef = databaseBO.getGroupOfUser(user.getUid());
+      loadGroupOfUserListener = new ValueEventListener() {
+         @Override
+         public void onCancelled(DatabaseError databaseError) {
+            Toast.makeText(SplashScreen.this,
+                  String.format("Login/Register failed! ErrorCode: %s", databaseError.getMessage()),
+                  Toast.LENGTH_LONG)
+                  .show();
+         }
 
-               @Override
-               public void onDataChange(DataSnapshot dataSnapshot) {
-                  String groupId = (String) dataSnapshot.getValue();
-                  if (groupId == null) {
-                     startActivity(new Intent(SplashScreen.this, HomeActivity.class));
-                  } else {
-                     startActivity(StatusActivity.newIntent(SplashScreen.this, groupId));
-                  }
-                  finish();
-               }
-            });
+         @Override
+         public void onDataChange(DataSnapshot dataSnapshot) {
+            String groupId = (String) dataSnapshot.getValue();
+            if (groupId == null) {
+               startActivity(new Intent(SplashScreen.this, HomeActivity.class));
+            } else {
+               startActivity(StatusActivity.newIntent(SplashScreen.this, groupId));
+            }
+            finish();
+         }
+      };
+      groupOfUserDbRef.addListenerForSingleValueEvent(loadGroupOfUserListener);
    }
 
    private void getIdToken(FirebaseUser user) {
