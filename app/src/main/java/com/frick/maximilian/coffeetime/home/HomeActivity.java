@@ -1,5 +1,6 @@
 package com.frick.maximilian.coffeetime.home;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -45,6 +46,12 @@ public class HomeActivity extends AppCompatActivity implements GroupSelectedList
    RecyclerView recyclerView;
    private GroupsAdapter adapter;
    private DatabaseReference ref;
+
+   public static Intent newIntent(Context context) {
+      Intent intent = new Intent(context, StatusActivity.class);
+      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+      return intent;
+   }
 
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {

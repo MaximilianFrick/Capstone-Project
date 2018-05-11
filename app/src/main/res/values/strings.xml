@@ -24,4 +24,6 @@
    <string name="coffeeness_title">Coffeeness</string>
    <string name="coffeeness_description">Best moment of the day. Take a cup and enjoy!</string>
    <string name="action_take">TAKE</string>
+   <string name="appwidget_text">app widget</string>
+   <string name="add_widget">Add widget</string>
 </resources>

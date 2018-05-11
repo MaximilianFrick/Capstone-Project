@@ -40,6 +40,7 @@ public class StatusActivity extends AppCompatActivity {
 
    public static Intent newIntent(Context context, String groupId) {
       Intent intent = new Intent(context, StatusActivity.class);
+      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
       intent.putExtra(EXTRA_GROUP, groupId);
       return intent;
    }
