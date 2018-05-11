@@ -26,4 +26,11 @@
    <string name="action_take">TAKE</string>
    <string name="appwidget_text">app widget</string>
    <string name="add_widget">Add widget</string>
+   <string name="cd_cup">image of a cup with a counter inside</string>
+   <string name="cd_full_jar">image of a filled jar</string>
+   <string name="cd_empty_jar">image of an empty jar</string>
+   <string name="cd_process_jar">image of a jar which is about to fill</string>
+   <string name="cd_coffee_bean">image of a coffee bean</string>
+   <string name="cd_water_jar">image of a jar filled with water</string>
+   <string name="cd_timer">image of a clock</string>
 </resources>
