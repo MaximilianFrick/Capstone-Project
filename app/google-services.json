@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "921442468960",
+    "firebase_url": "https://udacity-e29e9.firebaseio.com",
+    "project_id": "udacity-e29e9",
+    "storage_bucket": "udacity-e29e9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:921442468960:android:aa6f8e590d4287b5",
+        "android_client_info": {
+          "package_name": "com.frick.maximilian.coffeetime"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "921442468960-ok2a26jfolsgbblehl4hnk75ms36uofk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNVVNscfTAtrC5_B4Udc4i2x3J7Lb7Qrc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
