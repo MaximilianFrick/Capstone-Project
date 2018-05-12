@@ -14,7 +14,7 @@ import com.firebase.jobdispatcher.FirebaseJobDispatcher;
 import com.firebase.jobdispatcher.GooglePlayDriver;
 import com.firebase.jobdispatcher.Job;
 import com.frick.maximilian.coffeetime.R;
-import com.frick.maximilian.coffeetime.status.StatusActivity;
+import com.frick.maximilian.coffeetime.SplashScreen;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -105,11 +105,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     * @param messageBody FCM message body received.
     */
    private void sendNotification(String messageBody) {
-      Intent intent = new Intent(this, StatusActivity.class);
-      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-      PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
-            PendingIntent.FLAG_ONE_SHOT);
-
+      Intent startAppIntent = new Intent(this, SplashScreen.class);
+      PendingIntent configPendingIntent =
+            PendingIntent.getActivity(this, 0, startAppIntent, PendingIntent.FLAG_ONE_SHOT);
       String channelId = "fcm_default_channel";
       Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
       NotificationCompat.Builder notificationBuilder =
@@ -118,7 +116,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                   .setContentText(messageBody)
                   .setAutoCancel(true)
                   .setSound(defaultSoundUri)
-                  .setContentIntent(pendingIntent);
+                  .setContentIntent(configPendingIntent);
 
       NotificationManager notificationManager =
             (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
