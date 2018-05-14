@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+   signingConfigs {
+      config {
+         keyAlias 'coffeetime'
+         keyPassword 'Anion0.banjo6.viet'
+         storeFile file("$rootDir/coffeetime_keystore")
+         storePassword 'Anion0.banjo6.viet'
+      }
+   }
    compileSdkVersion 27
    buildToolsVersion "27.0.3"
    defaultConfig {
@@ -15,6 +23,7 @@ android {
       release {
          minifyEnabled false
          proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+         signingConfig signingConfigs.config
       }
    }
 }

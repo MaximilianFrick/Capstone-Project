@@ -39,6 +39,7 @@
       android:layout_gravity="bottom|end"
       android:layout_margin="16dp"
       android:clickable="true"
+      android:contentDescription="@string/cd_fab_create_group"
       android:focusable="true"
       android:src="@drawable/ic_group_add" />
 </FrameLayout>

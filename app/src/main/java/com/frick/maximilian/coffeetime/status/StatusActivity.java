@@ -110,11 +110,6 @@ public class StatusActivity extends AppCompatActivity {
       loadGroupStatusDbRef = databaseBO.getStatusRef();
    }
 
-   private void loadGroupFailedError() {
-      Toast.makeText(StatusActivity.this, "Loading group failed", Toast.LENGTH_LONG)
-            .show();
-   }
-
    private void initListeners() {
       loadGroupListener = new ValueEventListener() {
          @Override
@@ -168,6 +163,11 @@ public class StatusActivity extends AppCompatActivity {
          groupId = extras.getString(EXTRA_GROUP);
          databaseBO.setCurrentGroup(groupId);
       }
+   }
+
+   private void loadGroupFailedError() {
+      Toast.makeText(StatusActivity.this, R.string.toast_error_load_group, Toast.LENGTH_LONG)
+            .show();
    }
 
    private void setToolbarTitle() {

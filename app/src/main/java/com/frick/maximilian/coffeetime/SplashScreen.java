@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.IdpResponse;
 import com.frick.maximilian.coffeetime.core.Injector;
 import com.frick.maximilian.coffeetime.data.DatabaseBO;
 import com.frick.maximilian.coffeetime.home.HomeActivity;
@@ -24,7 +23,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -45,7 +43,6 @@ public class SplashScreen extends AppCompatActivity {
    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
       super.onActivityResult(requestCode, resultCode, data);
       if (requestCode == RC_SIGN_IN) {
-         IdpResponse response = IdpResponse.fromResultIntent(data);
          if (resultCode == RESULT_OK) {
             // Successfully signed in
             user = FirebaseAuth.getInstance()
@@ -57,9 +54,7 @@ public class SplashScreen extends AppCompatActivity {
                checkIfUserHasACurrentGroup(user);
             }
          } else {
-            Toast.makeText(this,
-                  String.format(Locale.getDefault(), "Login/Register failed! ErrorCode: %d",
-                        response != null ? response.getErrorCode() : 0), Toast.LENGTH_LONG)
+            Toast.makeText(this, R.string.toast_login_register_error, Toast.LENGTH_LONG)
                   .show();
          }
       }
@@ -99,8 +94,8 @@ public class SplashScreen extends AppCompatActivity {
          @Override
          public void onCancelled(DatabaseError databaseError) {
             Toast.makeText(SplashScreen.this,
-                  String.format("Login/Register failed! ErrorCode: %s", databaseError.getMessage()),
-                  Toast.LENGTH_LONG)
+                  String.format(getString(R.string.toast_load_group_of_user_error),
+                        databaseError.getMessage()), Toast.LENGTH_LONG)
                   .show();
          }
 

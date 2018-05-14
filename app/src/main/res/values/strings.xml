@@ -33,4 +33,8 @@
    <string name="cd_coffee_bean">image of a coffee bean</string>
    <string name="cd_water_jar">image of a jar filled with water</string>
    <string name="cd_timer">image of a clock</string>
+   <string name="toast_error_load_group">Loading group failed</string>
+   <string name="cd_fab_create_group">button to create a new coffee group</string>
+   <string name="toast_login_register_error">Login/Register failed</string>
+   <string name="toast_load_group_of_user_error">Loading the group of the user failed! ErrorCode: %s</string>
 </resources>
