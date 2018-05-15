@@ -78,7 +78,8 @@ public class HomeActivity extends AppCompatActivity implements GroupSelectedList
                         startActivity(new Intent(HomeActivity.this, SplashScreen.class));
                         finish();
                      } else {
-                        Toast.makeText(HomeActivity.this, "logout failed", Toast.LENGTH_LONG)
+                        Toast.makeText(HomeActivity.this, R.string.toast_logout_error,
+                              Toast.LENGTH_LONG)
                               .show();
                      }
                   }

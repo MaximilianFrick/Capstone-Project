@@ -37,4 +37,5 @@
    <string name="cd_fab_create_group">button to create a new coffee group</string>
    <string name="toast_login_register_error">Login/Register failed</string>
    <string name="toast_load_group_of_user_error">Loading the group of the user failed! ErrorCode: %s</string>
+   <string name="toast_logout_error">Logout failed</string>
 </resources>
