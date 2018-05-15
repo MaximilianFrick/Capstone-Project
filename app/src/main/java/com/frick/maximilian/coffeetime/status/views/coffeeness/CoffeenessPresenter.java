@@ -11,7 +11,7 @@ import javax.inject.Inject;
 public class CoffeenessPresenter {
    @Inject
    DatabaseBO databaseBO;
-   private CoffeenessContract.View view;
+   private final CoffeenessContract.View view;
 
    CoffeenessPresenter(CoffeenessContract.View view) {
       this.view = view;

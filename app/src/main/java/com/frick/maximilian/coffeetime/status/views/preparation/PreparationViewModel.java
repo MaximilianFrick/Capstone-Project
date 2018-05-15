@@ -2,6 +2,7 @@ package com.frick.maximilian.coffeetime.status.views.preparation;
 
 public class PreparationViewModel {
 
+   @SuppressWarnings ("UnusedReturnValue")
    public static final class Builder {
       private String coffeeAmount;
       private String cups;

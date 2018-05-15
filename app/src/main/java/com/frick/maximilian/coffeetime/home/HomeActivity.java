@@ -1,6 +1,5 @@
 package com.frick.maximilian.coffeetime.home;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,7 +28,6 @@ import com.frick.maximilian.coffeetime.status.StatusActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
 
 import javax.inject.Inject;
 
@@ -45,13 +43,6 @@ public class HomeActivity extends AppCompatActivity implements GroupSelectedList
    @BindView (R.id.recyclerview)
    RecyclerView recyclerView;
    private GroupsAdapter adapter;
-   private DatabaseReference ref;
-
-   public static Intent newIntent(Context context) {
-      Intent intent = new Intent(context, StatusActivity.class);
-      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-      return intent;
-   }
 
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {

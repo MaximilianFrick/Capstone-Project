@@ -13,7 +13,7 @@ public class Barista {
    private static final int CUP_SIZE_TIME_FACTOR = 30;
    private static final int CUP_SIZE_WATER = 250;
    private static final int INIT_TIME = 300;
-   private static SimpleDateFormat format = new SimpleDateFormat("~ mm:ss", Locale.getDefault());
+   private static final SimpleDateFormat format = new SimpleDateFormat("~ mm:ss", Locale.getDefault());
 
    public static PreparationViewModel buildPreparatioViewModel(int cups) {
       PreparationViewModel.Builder preparationBuilder = new PreparationViewModel.Builder();

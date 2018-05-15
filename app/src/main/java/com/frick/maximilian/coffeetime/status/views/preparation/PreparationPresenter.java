@@ -13,7 +13,7 @@ import javax.inject.Inject;
 public class PreparationPresenter {
    @Inject
    DatabaseBO databaseBO;
-   private PreparationContract.View view;
+   private final PreparationContract.View view;
 
    PreparationPresenter(PreparationContract.View view) {
       Injector.getAppComponent()

@@ -33,7 +33,7 @@ public class SplashScreen extends AppCompatActivity {
    private static final int RC_SIGN_IN = 123;
    @Inject
    DatabaseBO databaseBO;
-   List<AuthUI.IdpConfig> providers = Arrays.asList(new AuthUI.IdpConfig.GoogleBuilder().build(),
+   final List<AuthUI.IdpConfig> providers = Arrays.asList(new AuthUI.IdpConfig.GoogleBuilder().build(),
          new AuthUI.IdpConfig.EmailBuilder().build());
    private DatabaseReference groupOfUserDbRef;
    private ValueEventListener loadGroupOfUserListener;

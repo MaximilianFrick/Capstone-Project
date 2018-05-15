@@ -28,7 +28,7 @@ public class PatiencePresenter {
    DatabaseBO databaseBO;
    private Long remainingTime;
    private Disposable serverTimeSubscription;
-   private PatienceContract.View view;
+   private final PatienceContract.View view;
 
    PatiencePresenter(PatienceContract.View view) {
       Injector.getAppComponent()
@@ -52,30 +52,29 @@ public class PatiencePresenter {
             .observeOn(AndroidSchedulers.mainThread())
             .flatMap(new Function<ServerTime, Observable<RemainingTimeViewModel>>() {
                @Override
-               public Observable<RemainingTimeViewModel> apply(ServerTime serverTime)
-                     throws Exception {
+               public Observable<RemainingTimeViewModel> apply(ServerTime serverTime) {
                   return startTimer(serverTime);
                }
             })
             .takeUntil(new Predicate<RemainingTimeViewModel>() {
                @Override
-               public boolean test(RemainingTimeViewModel remainingTimeViewModel) throws Exception {
+               public boolean test(RemainingTimeViewModel remainingTimeViewModel) {
                   return remainingTimeViewModel.getRemainingTime() <= 0;
                }
             })
             .subscribe(new Consumer<RemainingTimeViewModel>() {
                @Override
-               public void accept(RemainingTimeViewModel remainingTimeViewModel) throws Exception {
+               public void accept(RemainingTimeViewModel remainingTimeViewModel) {
                   view.displayRemainingTime(remainingTimeViewModel);
                }
             }, new Consumer<Throwable>() {
                @Override
-               public void accept(Throwable throwable) throws Exception {
+               public void accept(Throwable throwable) {
                   Timber.e(throwable);
                }
             }, new Action() {
                @Override
-               public void run() throws Exception {
+               public void run() {
                   databaseBO.setStatus(CoffeeStatus.COFFEENESS);
                }
             });
@@ -86,7 +85,7 @@ public class PatiencePresenter {
       return Observable.interval(1000, TimeUnit.MILLISECONDS)
             .flatMap(new Function<Long, Observable<RemainingTimeViewModel>>() {
                @Override
-               public Observable<RemainingTimeViewModel> apply(Long past) throws Exception {
+               public Observable<RemainingTimeViewModel> apply(Long past) {
                   return Observable.just(Barista.buildRemainingTimeViewModel(serverTime,
                         remainingTime - (past * 1000)));
                }

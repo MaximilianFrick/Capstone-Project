@@ -12,7 +12,7 @@ import javax.inject.Inject;
 public class AskingPresenter {
    @Inject
    DatabaseBO databaseBO;
-   private AskingContract.View view;
+   private final AskingContract.View view;
 
    AskingPresenter(AskingContract.View view) {
       this.view = view;
