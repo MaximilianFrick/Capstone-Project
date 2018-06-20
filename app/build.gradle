@@ -3,10 +3,10 @@ apply plugin: 'com.android.application'
 android {
    signingConfigs {
       config {
-         keyAlias 'coffeetime'
-         keyPassword 'Anion0.banjo6.viet'
+         keyAlias 'xxx'
+         keyPassword 'xxxx'
          storeFile file("$rootDir/coffeetime_keystore")
-         storePassword 'Anion0.banjo6.viet'
+         storePassword 'xxx'
       }
    }
    compileSdkVersion 27
